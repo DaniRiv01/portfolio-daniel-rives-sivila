@@ -1,0 +1,37 @@
+---
+// src/pages/proyectos.astro
+import Layout from "../layouts/Layout.astro";
+import ProyectoCard from "../components/ProyectoCard.astro";
+import { SITE_INFO } from "../consts";
+import { proyectos } from "../data/proyectos";
+---
+
+<Layout 
+  title={`Todos los Proyectos | ${SITE_INFO.name}`} 
+  description="Explora todos mis proyectos de desarrollo web, videojuegos y más."
+>
+  <section class="mt-24 md:mt-0 reveal">
+    
+    <a href="/" class="text-blue-600 dark:text-blue-400 hover:underline mb-8 inline-flex items-center gap-2 font-medium">
+      <span class="text-xl">←</span> Volver al inicio
+    </a>
+
+    <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+      Todos mis proyectos
+    </h1>
+    <p class="text-lg text-slate-600 dark:text-slate-400 mb-12">
+      Una colección completa de las cosas en las que he estado trabajando, desde páginas web hasta aplicaciones interactivas.
+    </p>
+
+    <div class="grid grid-cols-1 gap-8">
+      {
+        proyectos.map((proyecto) => (
+          <div class="reveal">
+            <ProyectoCard {...proyecto} />
+          </div>
+        ))
+      }
+    </div>
+
+  </section>
+</Layout>

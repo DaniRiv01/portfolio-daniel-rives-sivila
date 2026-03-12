@@ -1,23 +1,61 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Portfolio de Daniel Rives" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" href="/sobre-mi/Velotibu.jpg" />
+
+	<title>{title}</title>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-500 selection:text-white"
+  >
+    <Header />
+
+<div class="flex-grow w-full pt-32 md:pt-40 pb-16 flex justify-center px-4 md:px-0">
+    
+    <main class="w-full max-w-5xl p-6 md:p-12 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-slate-800/50 shadow-2xl shadow-slate-950/30">
+        <slot />
+    </main>
+
+</div>
+
+<Footer />
+
+    <script>
+		//"Observa" todo el rato la página
+      const observer = new IntersectionObserver(
+        (entries) => {
+			//Por cada "Cosa nueva" que entra en pantalla:
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+			  //Para que no repita todo el rato la animación
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          rootMargin: "0px",
+		  //"Zona muerta" que hay hasta que aparezca
+          threshold: 0.2,
+        },
+      );
+      const elementosAAnimar = document.querySelectorAll(".reveal");
+      elementosAAnimar.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
