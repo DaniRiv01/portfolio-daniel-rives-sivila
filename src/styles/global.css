@@ -5,15 +5,27 @@ html {
 }
 
 body {
+  background-color: #0f172a; /*slate-900*/
+}
+
+/* Para crear una capa extra de fondo para poder desenfocarla sola */
+body::before {
+  content: "";
+  position: fixed;
+  /* Hago la capa un poco más grande que la pantalla para que los bordes borrosos no metan márgenes extraños */
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  z-index: -1;
+  
   background-image: url('/bg.png');
-  
-  background-attachment: fixed;
-  
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   
-  background-color: #0f172a; /*slate-900*/
+  /* Literalmente mi mejor amigo en todo este año xd */
+  filter: blur(24px); 
 }
 
 .reveal {

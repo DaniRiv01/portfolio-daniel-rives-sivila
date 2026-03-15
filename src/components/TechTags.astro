@@ -1,0 +1,25 @@
+---
+import { SKILL_ICONS, SKILLS as DEFAULT_SKILLS } from "../consts";
+
+interface Props {
+  skills?: string[];
+}
+
+const { skills = DEFAULT_SKILLS } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-2.5">
+  {
+    skills.map((tech) => (
+      <span class="flex items-center gap-2 px-3 py-1.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg text-sm font-bold shadow-md hover:scale-105 transition-transform cursor-default">
+        <img 
+          src={SKILL_ICONS[tech] || SKILL_ICONS["default"]} 
+          alt={`Icono de ${tech}`} 
+          class="w-4 h-4" 
+          loading="lazy"
+        />
+        {tech}
+      </span>
+    ))
+  }
+</div>

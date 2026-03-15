@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import ProyectoCard from "../components/ProyectoCard.astro";
 import { SITE_INFO, SKILLS } from "../consts";
 import { proyectos } from "../data/proyectos";
+import TechTags from "../components/TechTags.astro";
 
 const proyectosDestacados = proyectos.slice(0, 3);
 ---
@@ -71,19 +72,12 @@ const proyectosDestacados = proyectos.slice(0, 3);
     >
       Aunque mi fuerte es construir arquitecturas sólidas en el <span
         class="text-blue-600 dark:text-blue-400 font-semibold">Backend</span
-      >, disfruto dominando las herramientas que dan vida a la interfaz. Este es
-      el ecosistema que utilizo para crear soluciones completas:
+      >, disfruto dominando las herramientas que dan vida a la interfaz.
+      Este es el ecosistema que utilizo para crear soluciones completas:
     </p>
 
-    <div class="flex flex-wrap gap-3">
-      {
-        SKILLS.map((skill) => (
-          <span class="px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-1 transition-all cursor-default shadow-sm">
-            {skill}
-          </span>
-        ))
-      }
-    </div>
+    <TechTags />
+
   </section>
 
   <section id="proyectos" class="reveal mt-20 md:mt-32">

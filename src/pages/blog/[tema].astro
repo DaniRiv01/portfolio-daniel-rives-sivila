@@ -1,0 +1,103 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProyectoCard from "../../components/ProyectoCard.astro";
+import { tematicas } from "../../data/tematicas";
+import { proyectos } from "../../data/proyectos";
+
+export function getStaticPaths() {
+  return tematicas.map((tema) => ({
+    params: { tema: tema.id },
+    props: { info: tema },
+  }));
+}
+
+const { info } = Astro.props;
+
+const proyectosRelacionados = proyectos.filter((proyecto) =>
+  proyecto.tags.some(tag => tag.toLowerCase() === info.id.toLowerCase() || tag.toLowerCase() === info.nombre.toLowerCase())
+);
+---
+
+<Layout 
+  title={`${info.nombre} | Mi Blog`} 
+  description={info.resumen}
+>
+  <div class="reveal">
+    <a href="/blog" class="text-blue-600 dark:text-blue-400 hover:underline mb-6 inline-flex items-center gap-2 font-medium">
+      <span class="text-xl">←</span> Volver al blog
+    </a>
+
+    <div class="w-full min-h-[260px] md:min-h-[320px] relative overflow-hidden bg-slate-900 rounded-3xl mb-10 shadow-lg border border-slate-200/50 dark:border-slate-700/50 group flex flex-col justify-end">
+      
+      <img 
+        src={info.imagenHeader} 
+        alt={`Cabecera de ${info.nombre}`} 
+        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+      
+      <div class="relative z-10 flex flex-col items-center text-center pb-8 pt-16 px-4 md:px-10 mt-auto">
+          <span class="px-3 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-blue-500/80 text-white mb-3 md:mb-4 backdrop-blur-md shadow-sm shrink-0">
+              {info.tipo}
+          </span>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight drop-shadow-md leading-tight">
+              {info.nombre}
+          </h1>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+        
+        <div class="lg:col-span-2 flex flex-col gap-6">
+            {info.parrafos.map((parrafo) => (
+                <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+                {parrafo}
+                </p>
+            ))}
+        </div>
+
+        <aside class="space-y-8">
+            <div class="p-6 md:p-8 rounded-3xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/50 shadow-inner">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-blue-500 rounded-full"></span>
+                    Datos Clave
+                </h3>
+                <ul class="space-y-4">
+                    {info.datosClave.map((dato) => (
+                        <li class="border-b border-slate-200 dark:border-slate-700/50 pb-3 last:border-0 last:pb-0">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
+                                {dato.etiqueta}
+                            </span>
+                            <span class="text-base font-semibold text-slate-900 dark:text-white">
+                                {dato.valor}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            
+            <div class="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-lg">
+                <h3 class="text-xl font-bold mb-2">¿Tienes dudas?</h3>
+                <p class="text-blue-100 mb-6 text-sm leading-relaxed">Si quieres saber más sobre mi experiencia o charlar sobre estas aficiones, contáctame.</p>
+                <a href="/sobre-mi" class="block w-full text-center px-4 py-2.5 bg-white text-blue-700 font-bold rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
+                    Ir a Sobre mí
+                </a>
+            </div>
+        </aside>
+    </div>
+
+    {proyectosRelacionados.length > 0 && (
+        <div class="mt-16 pt-12 border-t border-slate-200 dark:border-slate-800">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+                Proyectos relacionados con <span class="text-blue-600 dark:text-blue-400">{info.nombre}</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 gap-6">
+                {proyectosRelacionados.map((proyecto) => (
+                    <ProyectoCard {...proyecto} />
+                ))}
+            </div>
+        </div>
+    )}
+  </div>
+</Layout>

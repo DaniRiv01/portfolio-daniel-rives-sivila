@@ -1,7 +1,14 @@
 ---
-// src/pages/sobre-mi.astro
 import Layout from "../layouts/Layout.astro";
-import { SITE_INFO, SKILLS } from "../consts";
+import { SITE_INFO, SKILLS, SKILL_ICONS } from "../consts";
+import TechTags from "../components/TechTags.astro";
+
+const techIcons: Record<string, string> = {
+  Astro: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M8.705 3.328A13.882 13.882 0 0 0 3 12.355c0 6.64 5.38 10.645 12.016 10.645 6.635 0 10.05-4.522 8.358-10.29-1.391-4.744-4.773-8.834-8.777-10.29a33.565 33.565 0 0 0-5.892.908Zm4.425 2.115c2.628.77 5.093 3.42 6.136 6.611 1.055 3.232-.345 6.786-3.86 8.046-3.514 1.26-6.844-.326-7.899-3.558-1.043-3.193.305-6.69 3.82-7.95 1.045-.375 2.17-.34 3.19.16a7.485 7.485 0 0 1-1.387 1.092Z"/></svg>`,
+  Tailwind: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.377 1.394 2.738 2.776 5.712 2.776 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.377 1.394 2.738 2.776 5.712 2.776 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>`,
+  Laravel: `<svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M22.046 7.42l-9.088-4.706a2.035 2.035 0 00-1.922 0L1.954 7.42A2 2 0 00.91 9.172v5.656a2 2 0 001.044 1.752l9.082 4.706a2.052 2.052 0 001.928 0l9.082-4.706a2 2 0 001.044-1.752V9.172a2 2 0 00-1.044-1.752zm-10.046 8.52l-6.958-3.606 6.958-3.606 6.958 3.606-6.958 3.606z"/></svg>`,
+  default: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>`,
+};
 ---
 
 <Layout
@@ -27,26 +34,52 @@ import { SITE_INFO, SKILLS } from "../consts";
     <div
       class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(180px,auto)]"
     >
-      <article class="md:col-span-2 row-span-2 p-8 rounded-3xl bg-white/40 dark:bg-slate-800/40 border border-white/30 dark:border-slate-700/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 group overflow-hidden relative">
-        <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors duration-700"></div>
-        
-        <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white relative z-10">Un giro de 180°</h2>
-        
-        <div class="space-y-6 text-lg text-slate-700 dark:text-slate-300 relative z-10 leading-relaxed">
+      <article
+        class="md:col-span-2 row-span-2 p-8 rounded-3xl bg-white/40 dark:bg-slate-800/40 border border-white/30 dark:border-slate-700/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 group overflow-hidden relative"
+      >
+        <div
+          class="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors duration-700"
+        >
+        </div>
+
+        <h2
+          class="text-3xl font-bold mb-6 text-slate-900 dark:text-white relative z-10"
+        >
+          Un giro de 180°
+        </h2>
+
+        <div
+          class="space-y-6 text-lg text-slate-700 dark:text-slate-300 relative z-10 leading-relaxed"
+        >
           <p>
-            Mi curiosidad despertó a los 15 años en una clase de la ESO, cuando un profesor me enseñó esa supuesta "facilidad" para crear webs. Sin embargo, no fue hasta los 21 años cuando decidí darle una última oportunidad a la informática. Fue la mejor decisión de mi vida: mi creatividad y mi lógica dieron un vuelco total.
+            Mi curiosidad despertó a los 15 años en una clase de la ESO, cuando
+            un profesor me enseñó esa supuesta "facilidad" para crear webs. Sin
+            embargo, no fue hasta los 21 años cuando decidí darle una última
+            oportunidad a la informática. Fue la mejor decisión de mi vida: mi
+            creatividad y mi lógica dieron un vuelco total.
           </p>
 
           <p>
-            Aunque mi terreno de juego favorito es el <span class="text-blue-600 dark:text-blue-400 font-bold underline decoration-2 underline-offset-4">Backend (especialmente con Laravel)</span>, entendí pronto que hoy en día no basta con saber estructurar bases de datos o pulir la lógica del servidor.
+            Aunque mi terreno de juego favorito es el <span
+              class="text-blue-600 dark:text-blue-400 font-bold underline decoration-2 underline-offset-4"
+              >Backend (especialmente con Laravel)</span
+            >, entendí pronto que hoy en día no basta con saber estructurar
+            bases de datos o pulir la lógica del servidor.
           </p>
 
-          <p class="text-slate-800 dark:text-slate-200 font-medium italic border-l-4 border-blue-500 pl-4 bg-blue-500/5 py-2 rounded-r-lg">
-            "Creo que para ser un desarrollador completo hay que saber conectar ambos mundos: la robustez del servidor con una interfaz que realmente funcione."
+          <p
+            class="text-slate-800 dark:text-slate-200 font-medium italic border-l-4 border-blue-500 pl-4 bg-blue-500/5 py-2 rounded-r-lg"
+          >
+            "Creo que para ser un desarrollador completo hay que saber conectar
+            ambos mundos: la robustez del servidor con una interfaz que
+            realmente funcione."
           </p>
 
           <p>
-            Por eso, ahora me dedico a explorar herramientas como **Astro y Tailwind**, buscando ese equilibrio donde el código backend impecable se encuentra con una experiencia de usuario moderna y rápida.
+            Por eso, ahora me dedico a explorar herramientas como **Astro y
+            Tailwind**, buscando ese equilibrio donde el código backend
+            impecable se encuentra con una experiencia de usuario moderna y
+            rápida.
           </p>
         </div>
       </article>
@@ -64,21 +97,15 @@ import { SITE_INFO, SKILLS } from "../consts";
       <article
         class="p-8 rounded-3xl bg-white/40 dark:bg-slate-800/40 border border-white/30 dark:border-slate-700/50 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-center"
       >
-        <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">
+        <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">
           Mi Stack Diario
         </h3>
-        <p class="text-slate-600 dark:text-slate-400 mb-4">
+        <p class="text-slate-600 dark:text-slate-400 mb-5">
           Con lo que más me divierto picando tecla:
         </p>
-        <div class="flex flex-wrap gap-2">
-          {
-            SKILLS.map((tech) => (
-              <span class="px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg text-sm font-bold shadow-md">
-                {tech}
-              </span>
-            ))
-          }
-        </div>
+        
+        <TechTags />
+        
       </article>
 
       <article
@@ -103,7 +130,9 @@ import { SITE_INFO, SKILLS } from "../consts";
               Primeras líneas de código
             </h4>
             <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">
-              El inicio de todo. Cuando decidí meterme al ciclo de Desarrollo de Aplicaciones Web (DAW) y descubrí lo que era pelearnos con el HTML y el CSS por primera vez.
+              El inicio de todo. Cuando decidí meterme al ciclo de Desarrollo de
+              Aplicaciones Web (DAW) y descubrí lo que era pelearnos con el HTML
+              y el CSS por primera vez.
             </p>
           </div>
 
@@ -121,7 +150,9 @@ import { SITE_INFO, SKILLS } from "../consts";
               Proyectos personales
             </h4>
             <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">
-              Empecé a crear mis primeros proyectos reales, a entender la lógica de programación y a descubrir que me gustaba más el código puro que el diseño.
+              Empecé a crear mis primeros proyectos reales, a entender la lógica
+              de programación y a descubrir que me gustaba más el código puro
+              que el diseño.
             </p>
           </div>
 
@@ -139,7 +170,10 @@ import { SITE_INFO, SKILLS } from "../consts";
               Dominando el Frontend
             </h4>
             <p class="text-slate-600 dark:text-slate-400 text-sm mt-2">
-              A punto de terminar DAW (o recién terminado). Ahora mismo estoy centrado en dominar el Frontend moderno con Astro y Tailwind, y buscando mi primera oportunidad profesional para demostrar lo que valgo.
+              A punto de terminar DAW (o recién terminado). Ahora mismo estoy
+              centrado en dominar el Frontend moderno con Astro y Tailwind, y
+              buscando mi primera oportunidad profesional para demostrar lo que
+              valgo.
             </p>
           </div>
         </div>
