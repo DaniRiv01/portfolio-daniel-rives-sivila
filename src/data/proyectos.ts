@@ -3,7 +3,7 @@ export const proyectos = [
     titulo: "Launch Page para Hollow Knight: Silksong",
     descripcion: "Página dedicada a la presentación del aquel entonces nuevo juego de la historia de Hollow Knight.",
     tags: ["Proyectos", "Juegos", "Astro"],
-    imagen: "/proyectos/Silksong.avif",
+    imagen: "/portfolio-daniel-rives-sivila/proyectos/Silksong.avif",
     enlace: "/portfolio-daniel-rives-sivila/proyactos-completos/Silksong/landing.html",
   },
   {
