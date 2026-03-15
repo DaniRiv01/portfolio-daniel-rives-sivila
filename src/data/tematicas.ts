@@ -4,7 +4,7 @@ export const tematicas = [
     nombre: "Desarrollo y Proyectos",
     resumen: "El 'detrás de las cámaras' de mi portafolio. Retos, decisiones de diseño y el aprendizaje constante conectando lógica de servidor con interfaces modernas.",
     tipo: "Portafolio",
-    imagenHeader: "/proyectos/Valorant.jpg",
+    imagenHeader: "/portfolio-daniel-rives-sivila/proyectos/Valorant.jpg",
     datosClave: [
       { etiqueta: "Foco Actual", valor: "Integración API Laravel <-> Astro" },
       { etiqueta: "Mayor Reto", valor: "Gestionar el estado en el Frontend sin frameworks pesados" },
@@ -22,7 +22,7 @@ export const tematicas = [
     nombre: "Videojuegos y Diseño",
     resumen: "Análisis personales de títulos que me marcan, poniendo el ojo en sus interfaces, mecánicas y en cómo inspiran mi forma de programar.",
     tipo: "Hobby",
-    imagenHeader: "/proyectos/Silksong.avif",
+    imagenHeader: "/portfolio-daniel-rives-sivila/proyectos/Silksong.avif",
     datosClave: [
       { etiqueta: "Género Favorito", valor: "Metroidvania / Shooter Competitivo" },
       { etiqueta: "Plataforma Principal", valor: "PC" },
@@ -39,7 +39,7 @@ export const tematicas = [
     nombre: "Explorando Astro",
     resumen: "Mi experiencia con este framework 'all-in-one'. Por qué me ha enganchado su rendimiento, cómo aprendo a usarlo y trucos que descubro.",
     tipo: "Tecnología",
-    imagenHeader: "/favicon.svg",
+    imagenHeader: "/portfolio-daniel-rives-sivila/favicon.svg",
     datosClave: [
       { etiqueta: "Nivel", valor: "Aprendiz Entusiasta (Junior)" },
       { etiqueta: "Lo Mejor", valor: "Carga cero JS por defecto y las Islas" },
@@ -56,7 +56,7 @@ export const tematicas = [
     nombre: "Anime y Animación",
     resumen: "Comentarios sobre series que veo, recomendaciones y cómo la narrativa visual japonesa influye en mi visión creativa.",
     tipo: "Hobby",
-    imagenHeader: "/proyectos/D-Ball.webp",
+    imagenHeader: "/portfolio-daniel-rives-sivila/proyectos/D-Ball.webp",
     datosClave: [
       { etiqueta: "Primer Anime", valor: "Dragon Ball Z" },
       { etiqueta: "Estilo Favorito", valor: "Shonen / Slice of Life" },
